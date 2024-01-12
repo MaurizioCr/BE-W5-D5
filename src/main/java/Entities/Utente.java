@@ -1,0 +1,50 @@
+package Entities;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@Entity
+@Table(name = "utente")
+
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+
+public class Utente {
+    @Id
+    @GeneratedValue
+    private long id;
+    private String name;
+    private String surname;
+    private String email;
+
+    @ManyToMany
+    @JoinTable(
+            name = "postazione_utente",
+            joinColumns = @JoinColumn(name = "utente_id"),
+            inverseJoinColumns = @JoinColumn(name = "postazione_id"))
+    private List<Postazione> postazione;
+
+    @OneToMany(mappedBy = "prenotazione")
+    List<Prenotazione> prenotazione;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPostazione(List<Postazione> postazione) {
+        this.postazione = postazione;
+    }
+}
