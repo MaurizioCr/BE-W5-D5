@@ -11,13 +11,12 @@ import java.util.List;
 @Table(name = "utente")
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 
 public class Utente {
     @Id
     @GeneratedValue
     private long id;
+    private String username;
     private String name;
     private String surname;
     private String email;
@@ -32,8 +31,28 @@ public class Utente {
     @OneToMany(mappedBy = "prenotazione")
     List<Prenotazione> prenotazione;
 
+    public Utente(String username, String name, String surname, String email, List<Postazione> postazione) {
+        this.username = username;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.postazione = postazione;
+    }
+
+    public Utente() {
+
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPrenotazione(List<Prenotazione> prenotazione) {
+        this.prenotazione = prenotazione;
     }
 
     public void setSurname(String surname) {

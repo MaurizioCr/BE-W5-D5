@@ -9,7 +9,6 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "prenotazione")
-@NoArgsConstructor
 @Getter
 @ToString
 
@@ -27,5 +26,24 @@ public class Prenotazione {
     @ManyToMany
     private Utente utente;
 
+    public Prenotazione(LocalDate localDate, Postazione postazione, Utente utente) {
+        this.localDate = localDate;
+        this.postazione = postazione;
+        this.utente = utente;
+    }
 
+    public Prenotazione() {
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
+    }
+
+    public void setPostazione(Postazione postazione) {
+        this.postazione = postazione;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
 }

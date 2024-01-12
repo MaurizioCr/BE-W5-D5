@@ -1,6 +1,9 @@
 package DAO;
 
+import Entities.Prenotazione;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface PrenotazioneDAO extends JpaRepository {
+@Repository
+public interface PrenotazioneDAO extends JpaRepository <Prenotazione, Long> {
 }

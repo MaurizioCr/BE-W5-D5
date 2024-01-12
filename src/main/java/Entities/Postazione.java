@@ -10,8 +10,6 @@ import java.util.List;
 @Entity
 @Table(name = "postazione")
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 
 public class Postazione {
     @Id
@@ -25,6 +23,18 @@ public class Postazione {
 
     @ManyToMany(mappedBy = "postazioniPrenotate")
     private List<Utente> utente;
+
+    public Postazione(String descrizione, TipoPostazione tipoPostazione, int maxOccupanti, StatoPostazione statoPostazione, List<Utente> utente, Edificio edificio) {
+        this.descrizione = descrizione;
+        this.tipoPostazione = tipoPostazione;
+        this.maxOccupanti = maxOccupanti;
+        this.statoPostazione = statoPostazione;
+        this.utente = utente;
+        this.edificio = edificio;
+    }
+
+    public Postazione() {
+    }
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
